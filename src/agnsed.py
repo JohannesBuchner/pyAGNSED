@@ -627,9 +627,9 @@ class agnsed:
         
         self.dr_dex = Ndex
         self.__init__(self.M, self.D, np.log10(self.mdot), self.a,
-                      self.cos_inc, self.kTe_h, self.kTe_w, self.gamma_h, 
+                      self.cosinc, self.kTe_h, self.kTe_w, self.gamma_h, 
                       self.gamma_w, self.r_h, self.r_w, np.log10(self.r_out), 
-                      self.hmax, self.rep, self.z)
+                      self.fcol, self.hmax, self.rep, self.z)
         
     
     ###########################################################################
@@ -693,7 +693,6 @@ class agnsed:
             fcol_r = self.fcol
         
         Tann *= fcol_r
-        
         bb_ann = self._bb_radiance(Tann)/(fcol_r**4)
         Lnu_ann = 4*np.pi*r*dr * bb_ann * self.Rg**2 * (self.cosinc/0.5)
         
