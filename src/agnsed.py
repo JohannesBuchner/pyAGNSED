@@ -79,7 +79,9 @@ class agnsed:
         r_warm : float
             Outer radius of warm Compton region - units : Rg
         log_rout : float
-            log of outer disc radius - units : Rg
+            log of outer disc radius - units : Rg. 
+            If -ve, the outer disc radius is set to the radius where
+            self-gravity stops.
         fcol : float
             Colour temperature correction as described in Done et al. (2012)
             If -ve then follows equation 1 and 2 in Done et al. (2012).
