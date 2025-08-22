@@ -263,10 +263,10 @@ class agnsed:
         ----------
         new_unit : {'cgs','cgs_wave', 'SI', 'counts'}, optional
             The default unit to use. The default is 'cgs'.
-             * cgs: the luminosity spectral density is in `u.erg/u.s/u.Hz`, use `agn.nugrid * u.Hz`
+             * cgs: the luminosity spectral density is in `u.erg/u.s/u.Hz`, use `agn.nu_grid * u.Hz`
              * counts: the luminosity spectral density is in `u.keV/u.s/u.keV`, use `agn.Egrid * u.keV`
              * cgs_wave: the luminosity spectral density is in `u.erg/u.s/u.AA`, use `agn.wavegrid * u.AA`
-             * SI: the luminosity spectral density is in `u.W/u.s/u.Hz`, use `agn.nugrid * u.Hz`
+             * SI: the luminosity spectral density is in `u.W/u.s/u.Hz`, use `agn.nu_grid * u.Hz`
             Integrated luminosities correspondingly lose /Hz or /AA.
             Fluxes correspondingly are per luminosity distance squared.
 
