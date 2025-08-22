@@ -1012,6 +1012,8 @@ if __name__ == '__main__':
     fEs = agn.get_SED(as_flux=True)
     
     plt.loglog(Es, Es**2 * fEs, color='k')
+    plt.ylabel('Energy flux density [keV/cm$^2$/s/keV]')
+    plt.xlabel('Energy [keV]')
     plt.ylim(1e-4, 1)
     plt.show()
     
