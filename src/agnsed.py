@@ -263,8 +263,12 @@ class agnsed:
         ----------
         new_unit : {'cgs','cgs_wave', 'SI', 'counts'}, optional
             The default unit to use. The default is 'cgs'.
-            NOTE, the main cgs_wave will give spectra in erg/s/Angstrom,
-            while cgs gives in erg/s/Hz
+             * cgs: the luminosity spectral density is in `u.erg/u.s/u.Hz`, use `agn.nugrid * u.Hz`
+             * counts: the luminosity spectral density is in `u.keV/u.s/u.keV`, use `agn.Egrid * u.keV`
+             * cgs_wave: the luminosity spectral density is in `u.erg/u.s/u.AA`, use `agn.wavegrid * u.AA`
+             * SI: the luminosity spectral density is in `u.W/u.s/u.Hz`, use `agn.nugrid * u.Hz`
+            Integrated luminosities correspondingly lose /Hz or /AA.
+            Fluxes correspondingly are per luminosity distance squared.
 
         """
         #Checking valid units
@@ -360,7 +364,7 @@ class agnsed:
     
     def _calc_Ledd(self):
         """
-        Caclulate eddington Luminosity
+        Calculate eddington Luminosity
 
         """
         Ledd = 1.39e38 * self.M #erg/s
@@ -647,7 +651,7 @@ class agnsed:
 
         Returns
         -------
-        \pi * Bnu : 2D-array, shape=(len(nus), len(Ts))
+        pi * Bnu : 2D-array, shape=(len(nus), len(Ts))
             Black-body emission spectrum - Units : erg/s/cm^2/Hz
 
         """
@@ -683,7 +687,7 @@ class agnsed:
         """
         
         T4_ann = self.calc_Tnt(r)
-        if self.rep == True:
+        if self.rep:
             T4_ann = T4_ann + self.calc_Trep(r, self.Lx)
         
         Tann = T4_ann**(1/4)
@@ -751,7 +755,7 @@ class agnsed:
         """
         
         T4_ann = self.calc_Tnt(r)
-        if self.rep == True:
+        if self.rep:
             T4_ann = T4_ann + self.calc_Trep(r, self.Lx)
         
         kTann = self.k_B * T4_ann**(1/4) #ergs
@@ -1003,7 +1007,7 @@ if __name__ == '__main__':
     nus = agn.nu_grid
     Es = agn.Egrid
     
-       
+    
     agn.set_units('counts')
     fEs = agn.get_SED(as_flux=True)
     
